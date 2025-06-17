@@ -251,60 +251,6 @@
                   {% if settings.show_in_cart_items != 'none' %}
                     {% render 'estimate-shipping-cart', product: product, message: settings.message_estimate_cart %}
                   {% endif %}
-                  {% if product.tags contains "overage-v3" %}
-                  <div id="ovg-inline-calculator" class="ovg-popup-open" style="max-width: 350px; margin: 0 auto 24px auto;">
-                    <div id="ovg-popup-content">
-                      <div class="ovg-header">
-                        <div class="heading">
-                          <span>Overage Calculator</span>
-                        </div>
-                        <div class="section-intro">
-                          <p>Add overage for cuts, waste, breaks, and repairs</p>
-                        </div>
-                      </div>
-                      <div class="ovg-content">
-                        <div class="ovg-input-section">
-                          <div class="input-wrapper">
-                            <div class="input-box">
-                              <input type="text" name="ovg-calculator-footage" id="ovg-calculator-footage" class="required-entry validate-digits" placeholder="0">
-                              <span class="input-label">Square Feet</span>
-                            </div>
-                            <div class="input-box">
-                              <input type="text" name="ovg-calculator-boxes" id="ovg-calculator-boxes" class="required-entry validate-digits" placeholder="0">
-                              <span class="input-label">Boxes</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="ovg-overage-section">
-                          <h4>Overage Amount</h4>
-                          <div id="ovg-overage-selectors">
-                            <label>
-                              <input type="radio" name="properties[OVERAGE]" value="0.10" checked>
-                              <span>10%</span>
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[OVERAGE]" value="0.15">
-                              <span>15%</span>
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[OVERAGE]" value="manual" id="ovg-manualInputRadio">
-                              <span>Manual Input</span>
-                            </label>
-                            <input type="text" id="ovg-manualInput" name="properties[OVERAGE_MANUAL]" class="hidden" placeholder="Enter %">
-                          </div>
-                        </div>
-                        <div class="ovg-results-section">
-                          <div id="ovg-results">
-                            <div class="ovg-result-row"><span>Overage:</span> <span id="ovg-overage-value">0</span></div>
-                            <div class="ovg-result-row"><span>Total:</span> <span id="ovg-total-value">0</span></div>
-                            <div class="ovg-result-row"><span>Boxes Needed:</span> <span id="ovg-boxes-needed-value">0</span></div>
-                            <div class="ovg-result-row"><span>Total Price:</span> <span id="ovg-total-price-value">$0.00</span></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {% endif %}
                   <button
                     id="x-atc-button-{{ section_id }}"
                     role="button"
