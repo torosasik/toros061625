@@ -41,14 +41,3 @@
 ---
 
 **This file documents the requirements and plan for the inline overage calculator refactor, as discussed and confirmed before coding.** 
-
-Inline Overage Calculator Refactor Steps
-Remove pop-up/modal logic for the overage calculator.
-Move the calculator markup to be always visible and inline for products with the overage-v3 tag.
-Ensure only the SQ. FT and Boxes entry fields are shown at the top.
-Display calculation results (Overage, Total, Boxes Needed, Total Price) below the inputs and above the Add to Cart button, styled like the pop-up.
-Apply the same modern, clean styling as the pop-up.
-Ensure all calculation logic (including overage options) matches the pop-up.
-Show the calculator only for products with the overage-v3 tag.
-Remove the total price box from the old quantity/area calculator if present.
-Test and clean up any remaining modal-specific code or styles.
