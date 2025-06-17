@@ -1018,21 +1018,39 @@
                       
                       // Auto-calculate when page loads
                       setTimeout(function() {
-                        autoCalculateOverage();
+                        if (typeof calculateOverage === 'function') {
+                          calculateOverage();
+                        }
                       }, 500);
 
                       // Auto-calculate when square footage changes
                       const sqftInput = document.getElementById('squared_size');
                       if (sqftInput) {
-                        sqftInput.addEventListener('input', autoCalculateOverage);
-                        sqftInput.addEventListener('change', autoCalculateOverage);
+                        sqftInput.addEventListener('input', function() {
+                          if (typeof calculateOverage === 'function') {
+                            calculateOverage();
+                          }
+                        });
+                        sqftInput.addEventListener('change', function() {
+                          if (typeof calculateOverage === 'function') {
+                            calculateOverage();
+                          }
+                        });
                       }
 
                       // Auto-calculate when boxes change
                       const boxesInput = document.getElementById('quantity_look_alike');
                       if (boxesInput) {
-                        boxesInput.addEventListener('input', autoCalculateOverage);
-                        boxesInput.addEventListener('change', autoCalculateOverage);
+                        boxesInput.addEventListener('input', function() {
+                          if (typeof calculateOverage === 'function') {
+                            calculateOverage();
+                          }
+                        });
+                        boxesInput.addEventListener('change', function() {
+                          if (typeof calculateOverage === 'function') {
+                            calculateOverage();
+                          }
+                        });
                       }
 
                       // Auto-calculate when overage percentage changes
@@ -1072,7 +1090,11 @@
                           }
                           
                           // Trigger calculation
-                          setTimeout(autoCalculateOverage, 100);
+                          setTimeout(function() {
+                            if (typeof calculateOverage === 'function') {
+                              calculateOverage();
+                            }
+                          }, 100);
                         });
                       });
 
@@ -1080,7 +1102,11 @@
                       const manualInput = document.getElementById('manualInputFieldOVG');
                       if (manualInput) {
                         manualInput.addEventListener('input', function() {
-                          setTimeout(autoCalculateOverage, 100);
+                          setTimeout(function() {
+                            if (typeof calculateOverage === 'function') {
+                              calculateOverage();
+                            }
+                          }, 100);
                         });
                       }
                     }
@@ -1539,7 +1565,9 @@
       updatePropertyFields(output_boxes, total_coverage_rounded, output_boxes * tiles_per_box);
 
       if ($('.inline-overage-calculator').length) {
-        autoCalculateOverage();
+        if (typeof calculateOverage === 'function') {
+          calculateOverage();
+        }
       }
     }
 
@@ -1572,7 +1600,9 @@
       updatePropertyFields(quantity_look_alike, q_calc_rounded, quantity_look_alike * tiles_per_box);
       
       if ($('.inline-overage-calculator').length) {
-        autoCalculateOverage();
+        if (typeof calculateOverage === 'function') {
+          calculateOverage();
+        }
       }
     }
 
