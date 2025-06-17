@@ -1,7 +1,6 @@
 {%- comment -%}
   This file has been modified by the Yoast SEO for Shopify app.
   You can learn more about this (and learn how to cleanly revert these changes) at https://yoa.st/removing-theme-changes.
-  Last updated: {{ 'now' | date: '%Y-%m-%d %H:%M:%S' }}
 {%- endcomment -%}
 {% comment %}
   Renders product detail
@@ -495,7 +494,7 @@
                         margin: 0 auto .5rem auto;
                     }
                   </style>
-                  {% if product.tags contains 'Tile_calculator' and product.tags contains 'overage-v3' == false and product.tags contains 'overage-popup-v3' == false %}
+                  {% if product.tags contains 'Tile_calculator' and product.tags contains 'overage-v3' == false %}
                     <div class="calculator_container">
                       <span class="calc_title">Quantity <a class="open_calc_pop_up">How much do I need?</a></span>
                       <div class="calculator_wrapper">
@@ -581,236 +580,236 @@
                       </div>
                     </div>
                   {% endif %}
-                  {% if product.tags contains 'overage-popup-v2' and product.tags contains 'overage-v3' == false and product.tags contains 'overage-popup-v3' == false %}
+                  {% if product.tags contains 'overage-popup-v2' %}
                     <div class="tile-calculator-wrapper calc_pop_up">
                       <div id="tile-calculator" class="productInfo-content">
                         <div class="close_calc_pop_up">Close</div>
                         <div class="calculator-section footage active" id="calculator-footage-section">
-                          <div class="section-intro">
+                            <div class="section-intro">
                             <h4>IF YOU KNOW THE SIZE OF AREA YOU WANT TO COVER</h4>
-                            <p>Calculate the number of tiles I need to order:</p>
-                          </div>
+                              <p>Calculate the number of tiles I need to order:</p>
+                            </div>
                           <div class="input-wrapper">
                             <div class="input-box" novalidate="novalidate">
-                              <input
-                                type="text"
-                                name="calculator_footage"
-                                id="calculator-footage"
-                                class="required-entry validate-digits"
-                                placeholder="0"
-                              >
-                              <span class="input-label">Sq. Ft.</span>
+                                <input
+                                  type="text"
+                                  name="calculator_footage"
+                                  id="calculator-footage"
+                                  class="required-entry validate-digits"
+                                  placeholder="0"
+                                >
+                                <span class="input-label">Sq. Ft.</span>
+                              </div>
                             </div>
-                          </div>
-                          <h4>Get a little extra</h4>
-                          
-                          <div id="overage_top">
-                            <div id="overage-selectors">
-                            <label>
-                              <input type="radio" name="properties[TOP-OVERAGE]" value="0.10" checked> 10%
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[TOP-OVERAGE]" value="0.15"> 15%
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[TOP-OVERAGE]" value="manual" id="manualInputRadio"> Manual Input
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[TOP-OVERAGE]" value="no_overage"> No Overage
-                            </label>
+                            <h4>Get a little extra</h4>
+                            
+                            <div id="overage_top">
+                              <div id="overage-selectors">
+                              <label>
+                                <input type="radio" name="properties[TOP-OVERAGE]" value="0.10" checked> 10%
+                              </label>
+                              <label>
+                                <input type="radio" name="properties[TOP-OVERAGE]" value="0.15"> 15%
+                              </label>
+                              <label>
+                                <input type="radio" name="properties[TOP-OVERAGE]" value="manual" id="manualInputRadio"> Manual Input
+                              </label>
+                              <label>
+                                <input type="radio" name="properties[TOP-OVERAGE]" value="no_overage"> No Overage
+                              </label>
+                              </div>
+                              <div id="top-manual-ovg" style="display: none;">
+                                <input type="number" id="manualInputField" name="properties[OVERAGE_MANUAL]" placeholder="Enter %" step="1" min="0"> %
+                              </div>
                             </div>
-                            <div id="top-manual-ovg" style="display: none;">
-                              <input type="number" id="manualInputField" name="properties[OVERAGE_MANUAL]" placeholder="Enter %" step="1" min="0"> %
-                            </div>
-                          </div>
-                          <script>
-                            document.querySelectorAll('#overage_top input[name="properties[TOP-OVERAGE]"]').forEach(radio => {
-                              radio.addEventListener('change', function () {
-                                const manualInputField = document.querySelector('#overage_top #top-manual-ovg');
-                                if (this.value === 'manual') {
-                                  manualInputField.style.display = 'inline-block';
-                                  manualInputField.focus();
-                                } else {
-                                  manualInputField.style.display = 'none';
-                                }
+                            <script>
+                              document.querySelectorAll('#overage_top input[name="properties[TOP-OVERAGE]"]').forEach(radio => {
+                                radio.addEventListener('change', function () {
+                                  const manualInputField = document.querySelector('#overage_top #top-manual-ovg');
+                                  if (this.value === 'manual') {
+                                    manualInputField.style.display = 'inline-block';
+                                    manualInputField.focus();
+                                  } else {
+                                    manualInputField.style.display = 'none';
+                                  }
+                                });
                               });
-                            });
-                          </script>
-                          
-                          <span class="small_text"
-                            >10% is the recommended minimum to cover cuts and future repairs</span
-                          >
-                          <a href="#bottom_pop_up" class="calculate_btn" id="calculate_top">Calculate</a>
-                        </div>
-                        <div class="calculator-section line-separator">
-                          <span class="separator">Or</span>
-                        </div>
-                        <div class="calculator-section dimensions active" id="calculator-dimensions-section">
-                          <div class="section-intro">
-                            <h4>IF YOU KNOW THE SIZE OF AREA YOU WANT TO COVER</h4>
-                            <p>Calculate the number of tiles I need to order:</p>
+                            </script>
+                            
+                            <span class="small_text"
+                              >10% is the recommended minimum to cover cuts and future repairs</span
+                            >
+                            <a href="#bottom_pop_up" class="calculate_btn" id="calculate_top">Calculate</a>
                           </div>
-                          <div class="dimension-box length-value">
-                            <div class="flex-box">
-                              <label class="label">Length</label>
-                              <div class="input-box ft" novalidate="novalidate">
-                                <input
-                                  type="text"
-                                  placeholder="0"
-                                  name="calculator_length_ft"
-                                  id="calculator-length-ft"
-                                  class="if-disable validate-number"
-                                >
-                                <span class="input-label">Feet</span>
-                              </div>
-                              <div class="input-box in" novalidate="novalidate">
-                                <input
-                                  type="text"
-                                  placeholder="0"
-                                  name="calculator_length_in"
-                                  id="calculator-length-in"
-                                  class="if-disable validate-number"
-                                >
-                                <span class="input-label">Inches</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="dimension-box width-value">
-                            <div class="flex-box">
-                              <label class="label">Width</label>
-                              <div class="input-box ft" novalidate="novalidate">
-                                <input
-                                  type="text"
-                                  placeholder="0"
-                                  name="calculator_width_ft"
-                                  id="calculator-width-ft"
-                                  class="if-disable validate-number"
-                                >
-                                <span class="input-label">Feet</span>
-                              </div>
-                              <div class="input-box in" novalidate="novalidate">
-                                <input
-                                  type="text"
-                                  placeholder="0"
-                                  name="calculator_width_in"
-                                  id="calculator-width-in"
-                                  class="if-disable validate-number"
-                                >
-                                <span class="input-label">Inches</span>
-                              </div>
-                            </div>
-                          </div>
-                          <h4>Get a little extra</h4>
-                          <div id="overage_bottom">
-                            <div id="bottom-overage-selectors">
-                            <label>
-                              <input type="radio" name="properties[BTM-OVERAGE]" value="0.10" checked> 10%
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[BTM-OVERAGE]" value="0.15"> 15%
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[BTM-OVERAGE]" value="manual" id="bottom-manualInputRadio"> Manual Input
-                            </label>
-                            <label>
-                              <input type="radio" name="properties[BTM-OVERAGE]" value="no_overage"> No Overage
-                            </label>
-                            </div>
-                            <div id="bottom-manual-ovg" style="display: none;">
-                              <input type="number" id="manualInputFieldBottom" name="properties[OVERAGE_MANUAL]" placeholder="Enter %" step="1" min="0"> %
-                            </div>
-                          </div>
-                          <script>
-                            document.querySelectorAll('#overage_bottom input[name="properties[BTM-OVERAGE]"]').forEach(radio => {
-                              radio.addEventListener('change', function () {
-                                const manualInputFieldBottom = document.querySelector('#overage_bottom #bottom-manual-ovg');
-                                if (this.value === 'manual') {
-                                  manualInputFieldBottom.style.display = 'inline-block';
-                                  manualInputFieldBottom.focus();
-                                } else {
-                                  manualInputFieldBottom.style.display = 'none';
-                                }
-                              });
-                            });
-                          </script>
-
-
-                          
-                          <span class="small_text"
-                            >10% is the recommended minimum to cover cuts and future repairs</span
-                          >
-                          <a href="#bottom_pop_up" class="calculate_btn" id="calculate_bottom">Calculate</a>
-                        </div>
-                        <div class="footer_outcome">
                           <div class="calculator-section line-separator">
-                            <span class="separator">Outcome</span>
+                            <span class="separator">Or</span>
                           </div>
-                          <div class="flex-box">
-                            <div class="input-box box-half" novalidate="novalidate">
-                              <input
-                                type="text"
-                                class="solution_input form-control"
-                                disabled="disabled"
-                                id="solution"
-                                placeholder="0"
-                              >
-                              <span class="input-label">Sq. Ft.</span>
+                          <div class="calculator-section dimensions active" id="calculator-dimensions-section">
+                            <div class="section-intro">
+                              <h4>IF YOU KNOW THE SIZE OF AREA YOU WANT TO COVER</h4>
+                              <p>Calculate the number of tiles I need to order:</p>
                             </div>
-                            <div class="input-box box-half" novalidate="novalidate">
-                              <input
-                                type="text"
-                                class="solution_input form-control"
-                                disabled="disabled"
-                                id="total_coverage"
-                                placeholder="0"
-                              >
-                              <span class="input-label">Total Coverage Sq. Ft.</span>
+                            <div class="dimension-box length-value">
+                              <div class="flex-box">
+                                <label class="label">Length</label>
+                                <div class="input-box ft" novalidate="novalidate">
+                                  <input
+                                    type="text"
+                                    placeholder="0"
+                                    name="calculator_length_ft"
+                                    id="calculator-length-ft"
+                                    class="if-disable validate-number"
+                                  >
+                                  <span class="input-label">Feet</span>
+                                </div>
+                                <div class="input-box in" novalidate="novalidate">
+                                  <input
+                                    type="text"
+                                    placeholder="0"
+                                    name="calculator_length_in"
+                                    id="calculator-length-in"
+                                    class="if-disable validate-number"
+                                  >
+                                  <span class="input-label">Inches</span>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div class="flex-box">
-                            <div class="input-box box-half" novalidate="novalidate">
-                              <input
-                                type="text"
-                                class="solution_input form-control"
-                                disabled="disabled"
-                                id="boxes"
-                                placeholder="0"
-                              >
-                              <span class="input-label">
-                                {% if product.metafields.measuringunitsatd.measuring_units_atd == "Box" %}
-                                  {{ product.metafields.measuringunitsatd.measuring_units_atd }}es
-                                {% elsif product.metafields.measuringunitsatd.measuring_units_atd == "Sheet" %}
-                                  {{ product.metafields.measuringunitsatd.measuring_units_atd }}s
-                                {% elsif product.metafields.measuringunitsatd.measuring_units_atd == "Piece" %}
-                                  {{ product.metafields.measuringunitsatd.measuring_units_atd }}s
-                                {% else %}
-                                  {{ product.metafields.measuringunitsatd.measuring_units_atd }}
-                                {% endif %}
-                              </span>
+                            <div class="dimension-box width-value">
+                              <div class="flex-box">
+                                <label class="label">Width</label>
+                                <div class="input-box ft" novalidate="novalidate">
+                                  <input
+                                    type="text"
+                                    placeholder="0"
+                                    name="calculator_width_ft"
+                                    id="calculator-width-ft"
+                                    class="if-disable validate-number"
+                                  >
+                                  <span class="input-label">Feet</span>
+                                </div>
+                                <div class="input-box in" novalidate="novalidate">
+                                  <input
+                                    type="text"
+                                    placeholder="0"
+                                    name="calculator_width_in"
+                                    id="calculator-width-in"
+                                    class="if-disable validate-number"
+                                  >
+                                  <span class="input-label">Inches</span>
+                                </div>
+                              </div>
                             </div>
-                            <div class="input-box box-half" novalidate="novalidate">
-                              <input
-                                type="text"
-                                class="solution_input form-control"
-                                disabled="disabled"
-                                id="total_cost"
-                                placeholder="0"
-                              >
-                              <span class="input-label">Total Cost</span>
+                            <h4>Get a little extra</h4>
+                            <div id="overage_bottom">
+                              <div id="bottom-overage-selectors">
+                              <label>
+                                <input type="radio" name="properties[BTM-OVERAGE]" value="0.10" checked> 10%
+                              </label>
+                              <label>
+                                <input type="radio" name="properties[BTM-OVERAGE]" value="0.15"> 15%
+                              </label>
+                              <label>
+                                <input type="radio" name="properties[BTM-OVERAGE]" value="manual" id="bottom-manualInputRadio"> Manual Input
+                              </label>
+                              <label>
+                                <input type="radio" name="properties[BTM-OVERAGE]" value="no_overage"> No Overage
+                              </label>
+                              </div>
+                              <div id="bottom-manual-ovg" style="display: none;">
+                                <input type="number" id="manualInputFieldBottom" name="properties[OVERAGE_MANUAL]" placeholder="Enter %" step="1" min="0"> %
+                              </div>
                             </div>
-                          </div>
-                        </div>
+                            <script>
+                              document.querySelectorAll('#overage_bottom input[name="properties[BTM-OVERAGE]"]').forEach(radio => {
+                                radio.addEventListener('change', function () {
+                                  const manualInputFieldBottom = document.querySelector('#overage_bottom #bottom-manual-ovg');
+                                  if (this.value === 'manual') {
+                                    manualInputFieldBottom.style.display = 'inline-block';
+                                    manualInputFieldBottom.focus();
+                                  } else {
+                                    manualInputFieldBottom.style.display = 'none';
+                                  }
+                                });
+                              });
+                            </script>
 
-                        <div class="calculator-section actions">
-                          <button id="addToquanitity" class="btn-calculator">
-                            <span id="addToCartquanitity">Add To Cart</span>
-                          </button>
+
+                            
+                            <span class="small_text"
+                              >10% is the recommended minimum to cover cuts and future repairs</span
+                            >
+                            <a href="#bottom_pop_up" class="calculate_btn" id="calculate_bottom">Calculate</a>
+                          </div>
+                          <div class="footer_outcome">
+                            <div class="calculator-section line-separator">
+                              <span class="separator">Outcome</span>
+                            </div>
+                            <div class="flex-box">
+                              <div class="input-box box-half" novalidate="novalidate">
+                                <input
+                                  type="text"
+                                  class="solution_input form-control"
+                                  disabled="disabled"
+                                  id="solution"
+                                  placeholder="0"
+                                >
+                                <span class="input-label">Sq. Ft.</span>
+                              </div>
+                              <div class="input-box box-half" novalidate="novalidate">
+                                <input
+                                  type="text"
+                                  class="solution_input form-control"
+                                  disabled="disabled"
+                                  id="total_coverage"
+                                  placeholder="0"
+                                >
+                                <span class="input-label">Total Coverage Sq. Ft.</span>
+                              </div>
+                            </div>
+                            <div class="flex-box">
+                              <div class="input-box box-half" novalidate="novalidate">
+                                <input
+                                  type="text"
+                                  class="solution_input form-control"
+                                  disabled="disabled"
+                                  id="boxes"
+                                  placeholder="0"
+                                >
+                                <span class="input-label">
+                                  {% if product.metafields.measuringunitsatd.measuring_units_atd == "Box" %}
+                                    {{ product.metafields.measuringunitsatd.measuring_units_atd }}es
+                                  {% elsif product.metafields.measuringunitsatd.measuring_units_atd == "Sheet" %}
+                                    {{ product.metafields.measuringunitsatd.measuring_units_atd }}s
+                                  {% elsif product.metafields.measuringunitsatd.measuring_units_atd == "Piece" %}
+                                    {{ product.metafields.measuringunitsatd.measuring_units_atd }}s
+                                  {% else %}
+                                    {{ product.metafields.measuringunitsatd.measuring_units_atd }}
+                                  {% endif %}
+                                </span>
+                              </div>
+                              <div class="input-box box-half" novalidate="novalidate">
+                                <input
+                                  type="text"
+                                  class="solution_input form-control"
+                                  disabled="disabled"
+                                  id="total_cost"
+                                  placeholder="0"
+                                >
+                                <span class="input-label">Total Cost</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="calculator-section actions">
+                            <button id="addToquanitity" class="btn-calculator">
+                              <span id="addToCartquanitity">Add To Cart</span>
+                            </button>
+                          </div>
                         </div>
+                        <div id="bottom_pop_up"></div>
                       </div>
-                      <div id="bottom_pop_up"></div>
                     </div>
-                  </div>
-                {% endif %}
+                  {% endif %}
 
                 {% if product.tags contains "overage-v3" or product.tags contains "overage-popup-v3" %}
                   <div class="inline-overage-calculator" data-product-id="{{ product.id }}">
@@ -897,116 +896,116 @@
                     margin-bottom: 10px;
                   }
                   .calculator_wrapper {
-                    display: flex;
+                        display: flex;
                     gap: 10px;
                     margin-bottom: 16px;
                   }
                   .calculator_wrapper .input_boxes {
                     flex: 1;
-                    text-align: center;
+                        text-align: center;
                     border: 1px solid #e5e7eb;
                     border-radius: 8px;
                     padding: 8px;
                   }
                   .calculator_wrapper .input_boxes input {
-                    border: none;
+                        border: none;
                     text-align: center;
                     font-size: 18px;
-                    font-weight: 600;
+                        font-weight: 600;
                     width: 100%;
                     padding-bottom: 4px;
                     background-color: transparent;
                   }
                    .calculator_wrapper .input_boxes input:focus {
-                      outline: none;
+                        outline: none;
                    }
                   .calculator_wrapper .input_boxes label {
                     font-size: 14px;
                     color: #6b7280;
-                  }
-                  #ovg-overage-selectors {
-                      display: grid;
-                      grid-template-columns: 1fr 1fr;
-                      gap: 8px;
-                      margin-bottom: 12px;
-                  }
-                  #ovg-overage-selectors label {
-                      position: relative;
-                      cursor: pointer;
-                      margin: 0;
-                  }
-                  #ovg-overage-selectors input[type="radio"] {
-                      position: absolute;
-                      opacity: 0;
-                      pointer-events: none;
-                  }
+                    }
+                    #ovg-overage-selectors {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 8px;
+                        margin-bottom: 12px;
+                    }
+                    #ovg-overage-selectors label {
+                        position: relative;
+                        cursor: pointer;
+                        margin: 0;
+                    }
+                    #ovg-overage-selectors input[type="radio"] {
+                        position: absolute;
+                        opacity: 0;
+                        pointer-events: none;
+                    }
                   #ovg-overage-selectors label span {
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      padding: 10px 12px;
-                      border: 2px solid #e5e7eb;
-                      border-radius: 12px;
-                      background: #fff;
-                      color: #000;
-                      font-weight: 600;
-                      font-size: 15px;
-                      transition: all 0.2s;
-                      min-height: 44px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 10px 12px;
+                        border: 2px solid #e5e7eb;
+                        border-radius: 12px;
+                        background: #fff;
+                        color: #000;
+                        font-weight: 600;
+                        font-size: 15px;
+                        transition: all 0.2s;
+                        min-height: 44px;
+                    }
+                    #ovg-overage-selectors input[type="radio"]:checked + span {
+                        background: #0066CC !important;
+                        color: #fff !important;
+                        border-color: #0066CC !important;
+                    }
+                    #ovg-overage-selectors label:has(input[type="radio"]:checked) {
+                        background: #0066CC !important;
+                        color: #fff !important;
+                        border-color: #0066CC !important;
+                    }
+                    .ovg-manual-input-wrapper {
+                        display: none;
+                        align-items: center;
+                        gap: 8px;
+                    }
+                    .ovg-manual-input-wrapper.show {
+                        display: flex;
+                    }
+                    #manualInputFieldOVG {
+                        border: 2px solid #e5e7eb;
+                        border-radius: 8px;
+                        padding: 8px 12px;
+                        width: 80px;
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 600;
                   }
-                  #ovg-overage-selectors input[type="radio"]:checked + span {
-                      background: #0066CC !important;
-                      color: #fff !important;
-                      border-color: #0066CC !important;
-                  }
-                  #ovg-overage-selectors label:has(input[type="radio"]:checked) {
-                      background: #0066CC !important;
-                      color: #fff !important;
-                      border-color: #0066CC !important;
-                  }
-                  .ovg-manual-input-wrapper {
-                      display: none;
-                      align-items: center;
-                      gap: 8px;
-                  }
-                  .ovg-manual-input-wrapper.show {
-                      display: flex;
-                  }
-                  #manualInputFieldOVG {
-                      border: 2px solid #e5e7eb;
-                      border-radius: 8px;
-                      padding: 8px 12px;
-                      width: 80px;
-                      text-align: center;
-                      font-size: 16px;
-                      font-weight: 600;
-                  }
-                  .ovg-info-section {
+                    .ovg-info-section {
                       text-align: left;
-                      margin: 12px 0 6px 0;
-                  }
-                  .ovg-info-text {
-                      color: #0066CC;
+                        margin: 12px 0 6px 0;
+                    }
+                    .ovg-info-text {
+                        color: #0066CC;
                       font-size: 14px;
-                      min-height: 20px;
-                  }
-                  .ovg-results {
+                        min-height: 20px;
+                    }
+                    .ovg-results {
                       background: #f9fafb;
                       border: 1px solid #e5e7eb;
-                      border-radius: 12px;
-                      padding: 12px 16px;
+                        border-radius: 12px;
+                        padding: 12px 16px;
                       margin-top: 18px;
-                  }
-                  .ovg-results-title {
+                    }
+                    .ovg-results-title {
                       font-size: 16px;
-                      font-weight: 700;
+                        font-weight: 700;
                       margin-bottom: 12px;
-                      text-align: center;
-                  }
-                  .ovg-result-row {
-                      display: flex;
-                      justify-content: space-between;
-                      padding: 4px 0;
+                        text-align: center;
+                    }
+                    .ovg-result-row {
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 4px 0;
                       font-size: 15px;
                   }
                 </style>
@@ -1019,101 +1018,75 @@
                       
                       // Auto-calculate when page loads
                       setTimeout(function() {
-                        if (typeof calculateOverage === 'function') {
-                          calculateOverage();
-                        }
+                        autoCalculateOverage();
                       }, 500);
 
                       // Auto-calculate when square footage changes
                       const sqftInput = document.getElementById('squared_size');
                       if (sqftInput) {
-                        sqftInput.addEventListener('input', function() {
-                          if (typeof calculateOverage === 'function') {
-                            calculateOverage();
-                          }
-                        });
-                        sqftInput.addEventListener('change', function() {
-                          if (typeof calculateOverage === 'function') {
-                            calculateOverage();
-                          }
-                        });
+                        sqftInput.addEventListener('input', autoCalculateOverage);
+                        sqftInput.addEventListener('change', autoCalculateOverage);
                       }
 
                       // Auto-calculate when boxes change
                       const boxesInput = document.getElementById('quantity_look_alike');
                       if (boxesInput) {
-                        boxesInput.addEventListener('input', function() {
-                          if (typeof calculateOverage === 'function') {
-                            calculateOverage();
-                          }
-                        });
-                        boxesInput.addEventListener('change', function() {
-                          if (typeof calculateOverage === 'function') {
-                            calculateOverage();
-                          }
-                        });
+                        boxesInput.addEventListener('input', autoCalculateOverage);
+                        boxesInput.addEventListener('change', autoCalculateOverage);
                       }
 
                       // Auto-calculate when overage percentage changes
                       document.querySelectorAll('#ovg-overage-selectors input[name="properties[OVERAGE]"]').forEach(radio => {
                         radio.addEventListener('change', function() {
-                          const manualWrapper = document.querySelector('#ovg-manual-input-wrapper');
+                                  const manualWrapper = document.querySelector('#ovg-manual-input-wrapper');
                           const infoTexts = document.querySelectorAll('.ovg-info-text');
-                          
-                          // Hide all info texts first
+                                  
+                                  // Hide all info texts first
                           infoTexts.forEach(text => text.style.display = 'none');
-                          
-                          if (this.value === 'manual') {
-                            manualWrapper.classList.add('show');
+                                  
+                                  if (this.value === 'manual') {
+                                    manualWrapper.classList.add('show');
                             const infoManual = document.querySelector('#ovg-info-manual');
                             if (infoManual) infoManual.style.display = 'block';
                             
-                            const manualField = document.querySelector('#manualInputFieldOVG');
+                                    const manualField = document.querySelector('#manualInputFieldOVG');
                             if (manualField && (!manualField.value || manualField.value === '')) {
-                              manualField.value = '20';
-                            }
+                                      manualField.value = '20';
+                                    }
                             if (manualField) {
-                              manualField.focus();
+                                    manualField.focus();
                               manualField.select();
                             }
-                          } else {
-                            manualWrapper.classList.remove('show');
-                            if (this.value === '0.10') {
+                                  } else {
+                                    manualWrapper.classList.remove('show');
+                                    if (this.value === '0.10') {
                               const info10 = document.querySelector('#ovg-info-10');
                               if (info10) info10.style.display = 'block';
-                            } else if (this.value === '0.15') {
+                                    } else if (this.value === '0.15') {
                               const info15 = document.querySelector('#ovg-info-15');
                               if (info15) info15.style.display = 'block';
-                            } else if (this.value === 'no_overage') {
+                                    } else if (this.value === 'no_overage') {
                               const infoNo = document.querySelector('#ovg-info-no');
                               if (infoNo) infoNo.style.display = 'block';
-                            }
-                          }
+                                    }
+                                  }
                           
                           // Trigger calculation
-                          setTimeout(function() {
-                            if (typeof calculateOverage === 'function') {
-                              calculateOverage();
-                            }
-                          }, 100);
-                        });
-                      });
+                          setTimeout(autoCalculateOverage, 100);
+                                });
+                              });
 
                       // Auto-calculate when manual overage input changes
                       const manualInput = document.getElementById('manualInputFieldOVG');
                       if (manualInput) {
                         manualInput.addEventListener('input', function() {
-                          setTimeout(function() {
-                            if (typeof calculateOverage === 'function') {
-                              calculateOverage();
-                            }
-                          }, 100);
+                          setTimeout(autoCalculateOverage, 100);
                         });
                       }
                     }
                   });
                 </script>
-              {% endif %}
+                  {% endif %}
                 
                   <style>
                     .js--qty-adjuster {
@@ -1212,13 +1185,13 @@
     // Auto-calculate when overage percentage is selected
     $(document).on('change', '#ovg-overage input[name="properties[OVERAGE]"]', function() {
       console.log('Overage selection changed to:', this.value);
-      autoCalculateOverage();
+        autoCalculateOverage();
     });
     
     // Auto-calculate when manual input changes
     $(document).on('input change', '#manualInputFieldOVG', function() {
       console.log('Manual input changed to:', $(this).val());
-      autoCalculateOverage();
+        autoCalculateOverage();
     });
     
     // Auto-calculate when square footage input changes
@@ -1403,7 +1376,7 @@
           output_boxes = {{ max_qty }};
         }
       {% endif %}
-
+      
       // Calculate total cost
       var product_price = {{ product.price | divided_by: 100.00 }};
       var total_cost_avg = product_price * output_boxes;
@@ -1566,9 +1539,7 @@
       updatePropertyFields(output_boxes, total_coverage_rounded, output_boxes * tiles_per_box);
 
       if ($('.inline-overage-calculator').length) {
-        if (typeof calculateOverage === 'function') {
-          calculateOverage();
-        }
+        autoCalculateOverage();
       }
     }
 
@@ -1601,9 +1572,7 @@
       updatePropertyFields(quantity_look_alike, q_calc_rounded, quantity_look_alike * tiles_per_box);
       
       if ($('.inline-overage-calculator').length) {
-        if (typeof calculateOverage === 'function') {
-          calculateOverage();
-        }
+        autoCalculateOverage();
       }
     }
 
