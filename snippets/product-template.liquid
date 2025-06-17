@@ -4702,3 +4702,210 @@
     </script>
   {%- endif -%}
 {%- endif -%}
+
+{% if product.tags contains "overage-v3" %}
+  <div id="ovg-inline-calculator" class="ovg-popup-open" style="max-width: 350px; margin: 0 auto 24px auto;">
+    <div id="ovg-popup-content">
+      <div class="ovg-header">
+        <div class="heading">
+          <span>Overage Calculator</span>
+        </div>
+        <div class="section-intro">
+          <p>Add overage for cuts, waste, breaks, and repairs</p>
+        </div>
+      </div>
+      <div class="ovg-content">
+        <div class="ovg-input-section">
+          <div class="input-wrapper">
+            <div class="input-box">
+              <input type="text" name="ovg-calculator-footage" id="ovg-calculator-footage" class="required-entry validate-digits" placeholder="0">
+              <span class="input-label">Square Feet</span>
+            </div>
+            <div class="input-box" style="margin-left: 12px;">
+              <input type="text" id="quantity_look_alike" class="required-entry validate-digits" placeholder="0">
+              <span class="input-label">Boxes</span>
+            </div>
+          </div>
+        </div>
+        <div class="ovg-overage-section">
+          <h4>Overage Amount</h4>
+          <div id="ovg-overage">
+            <div id="ovg-overage-selectors">
+              <label>
+                <input type="radio" name="properties[OVERAGE]" value="0.10" checked>
+                <span>10%</span>
+              </label>
+              <label>
+                <input type="radio" name="properties[OVERAGE]" value="0.15">
+                <span>15%</span>
+              </label>
+              <label>
+                <input type="radio" name="properties[OVERAGE]" value="manual" id="ovg-manualInputRadio">
+                <span>Manual Input</span>
+              </label>
+              <label>
+                <input type="radio" name="properties[OVERAGE]" value="no_overage">
+                <span>No Overage</span>
+              </label>
+            </div>
+          </div>
+          <div class="ovg-info-section">
+            <div class="ovg-info-text" id="ovg-info-10" style="display: block;">Recommended minimum</div>
+            <div class="ovg-info-text" id="ovg-info-15" style="display: none;">Extra coverage for complex cuts</div>
+            <div class="ovg-info-text" id="ovg-info-manual" style="display: none;">Custom percentage</div>
+            <div class="ovg-info-text" id="ovg-info-no" style="display: none;">Not recommended - no extra material</div>
+          </div>
+          <div class="ovg-manual-section">
+            <div class="ovg-manual-input-wrapper" id="ovg-manual-input-wrapper">
+              <input type="number" id="manualInputFieldOVG" name="properties[OVERAGE_MANUAL]" value="20" step="1" min="0">
+              <span class="ovg-percent-symbol">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="ovg-results footer_outcome" style="margin-top: 18px;">
+          <div class="ovg-results-title">Calculation Results</div>
+          <div class="ovg-result-row">
+            <span class="ovg-result-label">Overage:</span>
+            <span class="ovg-result-value" id="ovg-overage-display">0 Sq. Ft.</span>
+          </div>
+          <div class="ovg-result-row">
+            <span class="ovg-result-label">Total:</span>
+            <span class="ovg-result-value" id="ovg-total-display">0 Sq. Ft.</span>
+          </div>
+          <div class="ovg-result-row">
+            <span class="ovg-result-label">Boxes Needed:</span>
+            <span class="ovg-result-value" id="ovg-boxes-display">0</span>
+          </div>
+          <div class="ovg-result-row">
+            <span class="ovg-result-label">Total Price:</span>
+            <span class="ovg-result-value" id="ovg-price-display">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    /* Use the same styles as the pop-up for the inline calculator */
+    #ovg-inline-calculator .ovg-header { background: #0066CC; padding: 16px 20px; border-radius: 16px 16px 0 0; text-align: center; }
+    #ovg-inline-calculator .heading { font-size: 20px; font-weight: bold; color: #fff; margin: 0 0 6px 0; }
+    #ovg-inline-calculator .section-intro p { font-size: 13px; color: rgba(255,255,255,0.9); margin: 0; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #ovg-inline-calculator .ovg-content { padding: 12px 16px 0; }
+    #ovg-inline-calculator .ovg-input-section { margin-bottom: 8px; text-align: center; }
+    #ovg-inline-calculator .input-wrapper { display: flex; justify-content: center; margin-bottom: 4px; }
+    #ovg-inline-calculator .input-box { position: relative; width: 100%; max-width: 120px; margin: 0 6px; }
+    #ovg-inline-calculator .input-box input { width: 100%; text-align: center; border: none; border-radius: 12px; padding: 14px 12px; font-size: 22px; font-weight: 600; background: #f9fafb; outline: none; transition: background-color 0.2s; color: #374151; }
+    #ovg-inline-calculator .input-box input:focus { background: #fff; box-shadow: 0 0 0 2px #0066CC; }
+    #ovg-inline-calculator .input-label { display: block; font-size: 16px; color: #000; margin-top: 6px; margin-bottom: 4px; font-weight: 600; }
+    #ovg-inline-calculator .ovg-overage-section { margin-bottom: 12px; }
+    #ovg-inline-calculator .ovg-overage-section h4 { font-size: 18px; font-weight: 700; color: #000; text-align: center; margin: 0 0 12px 0; }
+    #ovg-inline-calculator #ovg-overage-selectors { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    #ovg-inline-calculator #ovg-overage-selectors label { position: relative; cursor: pointer; margin: 0; display: flex; align-items: center; justify-content: center; padding: 10px 12px; border: 2px solid #e5e7eb; border-radius: 12px; background: #fff; color: #000; font-weight: 600; font-size: 15px; transition: all 0.2s; min-height: 44px; }
+    #ovg-inline-calculator #ovg-overage-selectors input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+    #ovg-inline-calculator #ovg-overage-selectors input[type="radio"]:checked + span { background: #0066CC !important; color: #fff !important; border-color: #0066CC !important; }
+    #ovg-inline-calculator #ovg-overage-selectors label:has(input[type="radio"]:checked) { background: #0066CC !important; color: #fff !important; border-color: #0066CC !important; }
+    #ovg-inline-calculator #ovg-overage-selectors label:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(81,129,188,0.15); }
+    #ovg-inline-calculator .ovg-manual-section { text-align: center; margin: 12px 0; }
+    #ovg-inline-calculator .ovg-manual-input-wrapper { display: none; align-items: center; justify-content: center; gap: 8px; }
+    #ovg-inline-calculator .ovg-manual-input-wrapper.show { display: flex; }
+    #ovg-inline-calculator #manualInputFieldOVG { border: 2px solid #e5e7eb; border-radius: 8px; padding: 8px 12px; width: 80px; text-align: center; font-size: 16px; font-weight: 600; outline: none; background: #fff; }
+    #ovg-inline-calculator #manualInputFieldOVG:focus { border-color: #0066CC; background: #fff; }
+    #ovg-inline-calculator .ovg-percent-symbol { font-size: 16px; font-weight: 600; color: #374151; }
+    #ovg-inline-calculator .ovg-info-section { text-align: center; margin: 12px 0 6px 0; }
+    #ovg-inline-calculator .ovg-info-text { color: #0066CC; font-style: normal; font-size: 16px; margin: 0; min-height: 20px; line-height: 1.4; font-weight: 400; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    #ovg-inline-calculator #ovg-info-no { color: #dc2626; }
+    #ovg-inline-calculator .ovg-results { background: #fff; border: 2px solid #e5e7eb; border-radius: 12px; padding: 12px 16px; margin: 18px 0 0 0; }
+    #ovg-inline-calculator .ovg-results-title { font-size: 18px; font-weight: 700; color: #000; text-align: center; margin: 0 0 12px 0; }
+    #ovg-inline-calculator .ovg-result-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; }
+    #ovg-inline-calculator .ovg-result-row:last-child { padding-bottom: 4px; margin-bottom: 0; border-bottom: none; }
+    #ovg-inline-calculator .ovg-result-label { font-size: 17px; color: #374151; }
+    #ovg-inline-calculator .ovg-result-value { font-size: 17px; font-weight: 600; color: #0066CC; }
+  </style>
+  <script>
+    // Use the same JS logic as the pop-up, but for inline
+    document.querySelectorAll('#ovg-overage input[name="properties[OVERAGE]"]').forEach(radio => {
+      radio.addEventListener('change', function () {
+        const manualWrapper = document.querySelector('#ovg-manual-input-wrapper');
+        document.querySelectorAll('.ovg-info-text').forEach(text => text.style.display = 'none');
+        if (this.value === 'manual') {
+          manualWrapper.classList.add('show');
+          document.querySelector('#ovg-info-manual').style.display = 'block';
+          const manualField = document.querySelector('#manualInputFieldOVG');
+          if (!manualField.value || manualField.value === '') {
+            manualField.value = '20';
+          }
+          manualField.focus();
+          manualField.select();
+        } else {
+          manualWrapper.classList.remove('show');
+          if (this.value === '0.10') {
+            document.querySelector('#ovg-info-10').style.display = 'block';
+          } else if (this.value === '0.15') {
+            document.querySelector('#ovg-info-15').style.display = 'block';
+          } else if (this.value === 'no_overage') {
+            document.querySelector('#ovg-info-no').style.display = 'block';
+          }
+        }
+      });
+    });
+    // Conversion logic for SQ. FT and Boxes
+    function updateBoxAndSqftFields() {
+      const sqftInput = document.getElementById('ovg-calculator-footage');
+      const boxInput = document.getElementById('quantity_look_alike');
+      const boxSize = {{ box_area_clean | default: 1 }};
+      let isBoxChange = false;
+      boxInput.addEventListener('input', function() {
+        isBoxChange = true;
+        const boxes = parseFloat(boxInput.value) || 0;
+        sqftInput.value = (boxes * boxSize).toFixed(2);
+        triggerOverageCalc();
+      });
+      sqftInput.addEventListener('input', function() {
+        if (!isBoxChange) {
+          const sqft = parseFloat(sqftInput.value) || 0;
+          boxInput.value = Math.ceil(sqft / boxSize);
+        }
+        isBoxChange = false;
+        triggerOverageCalc();
+      });
+    }
+    function triggerOverageCalc() {
+      if (typeof calculateOverageInline === 'function') {
+        calculateOverageInline();
+      }
+    }
+    // Inline calculation logic (copy from pop-up, but update selectors)
+    function calculateOverageInline() {
+      const sqft = parseFloat(document.getElementById('ovg-calculator-footage').value) || 0;
+      const boxSize = {{ box_area_clean | default: 1 }};
+      const productPrice = {{ product.price | divided_by: 100.00 }};
+      const overageRadios = document.querySelectorAll('#ovg-overage input[name="properties[OVERAGE]"]');
+      let overage = 0;
+      let selectedOverage = '0.10';
+      overageRadios.forEach(radio => { if (radio.checked) selectedOverage = radio.value; });
+      if (selectedOverage === 'manual') {
+        const manualVal = parseFloat(document.getElementById('manualInputFieldOVG').value) || 0;
+        overage = manualVal / 100;
+      } else if (selectedOverage === 'no_overage') {
+        overage = 0;
+      } else {
+        overage = parseFloat(selectedOverage);
+      }
+      const overageAmount = sqft * overage;
+      const total = sqft * (1 + overage);
+      const boxesNeeded = Math.max(1, Math.round(total / boxSize));
+      const totalPrice = productPrice * boxesNeeded;
+      document.getElementById('ovg-overage-display').textContent = overageAmount.toFixed(2) + ' Sq. Ft.';
+      document.getElementById('ovg-total-display').textContent = total.toFixed(2) + ' Sq. Ft.';
+      document.getElementById('ovg-boxes-display').textContent = boxesNeeded;
+      document.getElementById('ovg-price-display').textContent = '$' + totalPrice.toFixed(2);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      updateBoxAndSqftFields();
+      triggerOverageCalc();
+      document.getElementById('manualInputFieldOVG').addEventListener('input', triggerOverageCalc);
+      document.querySelectorAll('#ovg-overage input[name="properties[OVERAGE]"]').forEach(radio => {
+        radio.addEventListener('change', triggerOverageCalc);
+      });
+    });
+  </script>
+{% endif %}
