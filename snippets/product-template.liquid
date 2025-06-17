@@ -1250,8 +1250,8 @@
                   return;
               }
             {% endif %}
-            $('#ovg-popup').removeClass('ovg-popup-open'); 
-            $(this).parents('html').removeClass('overflow-pop-hidden');
+            // $('#ovg-popup').removeClass('ovg-popup-open'); // Commented out - using inline calculator now
+            // $(this).parents('html').removeClass('overflow-pop-hidden'); // Commented out - using inline calculator now
             $('#x-atc-button-{{ section.id }}').click();
         }
     }); 
