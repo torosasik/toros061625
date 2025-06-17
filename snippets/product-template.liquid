@@ -494,7 +494,7 @@
                         margin: 0 auto .5rem auto;
                     }
                   </style>
-                  {% if product.tags contains 'Tile_calculator' and product.tags contains 'overage-v3' == false %}
+                  {% if product.tags contains 'Tile_calculator' and product.tags contains 'overage-v3' == false and product.tags contains 'overage-popup-v3' == false %}
                     <div class="calculator_container">
                       <span class="calc_title">Quantity <a class="open_calc_pop_up">How much do I need?</a></span>
                       <div class="calculator_wrapper">
@@ -580,7 +580,7 @@
                       </div>
                     </div>
                   {% endif %}
-                  {% if product.tags contains 'overage-popup-v2' %}
+                  {% if product.tags contains 'overage-popup-v2' and product.tags contains 'overage-v3' == false and product.tags contains 'overage-popup-v3' == false %}
                     <div class="tile-calculator-wrapper calc_pop_up">
                       <div id="tile-calculator" class="productInfo-content">
                         <div class="close_calc_pop_up">Close</div>
