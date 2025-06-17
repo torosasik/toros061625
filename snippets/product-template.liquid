@@ -4721,64 +4721,36 @@
               <input type="text" name="ovg-calculator-footage" id="ovg-calculator-footage" class="required-entry validate-digits" placeholder="0">
               <span class="input-label">Square Feet</span>
             </div>
-            <div class="input-box" style="margin-left: 12px;">
-              <input type="text" id="quantity_look_alike" class="required-entry validate-digits" placeholder="0">
+            <div class="input-box">
+              <input type="text" name="ovg-calculator-boxes" id="ovg-calculator-boxes" class="required-entry validate-digits" placeholder="0">
               <span class="input-label">Boxes</span>
             </div>
           </div>
         </div>
         <div class="ovg-overage-section">
           <h4>Overage Amount</h4>
-          <div id="ovg-overage">
-            <div id="ovg-overage-selectors">
-              <label>
-                <input type="radio" name="properties[OVERAGE]" value="0.10" checked>
-                <span>10%</span>
-              </label>
-              <label>
-                <input type="radio" name="properties[OVERAGE]" value="0.15">
-                <span>15%</span>
-              </label>
-              <label>
-                <input type="radio" name="properties[OVERAGE]" value="manual" id="ovg-manualInputRadio">
-                <span>Manual Input</span>
-              </label>
-              <label>
-                <input type="radio" name="properties[OVERAGE]" value="no_overage">
-                <span>No Overage</span>
-              </label>
-            </div>
-          </div>
-          <div class="ovg-info-section">
-            <div class="ovg-info-text" id="ovg-info-10" style="display: block;">Recommended minimum</div>
-            <div class="ovg-info-text" id="ovg-info-15" style="display: none;">Extra coverage for complex cuts</div>
-            <div class="ovg-info-text" id="ovg-info-manual" style="display: none;">Custom percentage</div>
-            <div class="ovg-info-text" id="ovg-info-no" style="display: none;">Not recommended - no extra material</div>
-          </div>
-          <div class="ovg-manual-section">
-            <div class="ovg-manual-input-wrapper" id="ovg-manual-input-wrapper">
-              <input type="number" id="manualInputFieldOVG" name="properties[OVERAGE_MANUAL]" value="20" step="1" min="0">
-              <span class="ovg-percent-symbol">%</span>
-            </div>
+          <div id="ovg-overage-selectors">
+            <label>
+              <input type="radio" name="properties[OVERAGE]" value="0.10" checked>
+              <span>10%</span>
+            </label>
+            <label>
+              <input type="radio" name="properties[OVERAGE]" value="0.15">
+              <span>15%</span>
+            </label>
+            <label>
+              <input type="radio" name="properties[OVERAGE]" value="manual" id="ovg-manualInputRadio">
+              <span>Manual Input</span>
+            </label>
+            <input type="text" id="ovg-manualInput" name="properties[OVERAGE_MANUAL]" class="hidden" placeholder="Enter %">
           </div>
         </div>
-        <div class="ovg-results footer_outcome" style="margin-top: 18px;">
-          <div class="ovg-results-title">Calculation Results</div>
-          <div class="ovg-result-row">
-            <span class="ovg-result-label">Overage:</span>
-            <span class="ovg-result-value" id="ovg-overage-display">0 Sq. Ft.</span>
-          </div>
-          <div class="ovg-result-row">
-            <span class="ovg-result-label">Total:</span>
-            <span class="ovg-result-value" id="ovg-total-display">0 Sq. Ft.</span>
-          </div>
-          <div class="ovg-result-row">
-            <span class="ovg-result-label">Boxes Needed:</span>
-            <span class="ovg-result-value" id="ovg-boxes-display">0</span>
-          </div>
-          <div class="ovg-result-row">
-            <span class="ovg-result-label">Total Price:</span>
-            <span class="ovg-result-value" id="ovg-price-display">$0.00</span>
+        <div class="ovg-results-section">
+          <div id="ovg-results">
+            <div class="ovg-result-row"><span>Overage:</span> <span id="ovg-overage-value">0</span></div>
+            <div class="ovg-result-row"><span>Total:</span> <span id="ovg-total-value">0</span></div>
+            <div class="ovg-result-row"><span>Boxes Needed:</span> <span id="ovg-boxes-needed-value">0</span></div>
+            <div class="ovg-result-row"><span>Total Price:</span> <span id="ovg-total-price-value">$0.00</span></div>
           </div>
         </div>
       </div>
@@ -4850,7 +4822,7 @@
     // Conversion logic for SQ. FT and Boxes
     function updateBoxAndSqftFields() {
       const sqftInput = document.getElementById('ovg-calculator-footage');
-      const boxInput = document.getElementById('quantity_look_alike');
+      const boxInput = document.getElementById('ovg-calculator-boxes');
       const boxSize = {{ box_area_clean | default: 1 }};
       let isBoxChange = false;
       boxInput.addEventListener('input', function() {
@@ -4894,10 +4866,10 @@
       const total = sqft * (1 + overage);
       const boxesNeeded = Math.max(1, Math.round(total / boxSize));
       const totalPrice = productPrice * boxesNeeded;
-      document.getElementById('ovg-overage-display').textContent = overageAmount.toFixed(2) + ' Sq. Ft.';
-      document.getElementById('ovg-total-display').textContent = total.toFixed(2) + ' Sq. Ft.';
-      document.getElementById('ovg-boxes-display').textContent = boxesNeeded;
-      document.getElementById('ovg-price-display').textContent = '$' + totalPrice.toFixed(2);
+      document.getElementById('ovg-overage-value').textContent = overageAmount.toFixed(2) + ' Sq. Ft.';
+      document.getElementById('ovg-total-value').textContent = total.toFixed(2) + ' Sq. Ft.';
+      document.getElementById('ovg-boxes-needed-value').textContent = boxesNeeded;
+      document.getElementById('ovg-total-price-value').textContent = '$' + totalPrice.toFixed(2);
     }
     document.addEventListener('DOMContentLoaded', function() {
       updateBoxAndSqftFields();
